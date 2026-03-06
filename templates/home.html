@@ -1,0 +1,55 @@
+<!-- templates/home.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Book Alchemy</title>
+  </head>
+  <body>
+    <h1>Books</h1>
+
+    <div>
+      <a href="{{ url_for('index', sort='title', q=request.args.get('q', '')) }}">Sort by title</a> |
+      <a href="{{ url_for('index', sort='author', q=request.args.get('q', '')) }}">Sort by author</a>
+    </div>
+
+    <form method="GET" action="{{ url_for('index') }}">
+      <input
+        type="text"
+        name="q"
+        placeholder="Search by title or author"
+        value="{{ request.args.get('q', '') }}"
+      >
+      <button type="submit">Search</button>
+    </form>
+
+    <ul>
+      {% for book in books %}
+        <li>
+          {{ book.title }} — {{ book.author.full_name }}
+
+          <form
+            method="POST"
+            action="{{ url_for('delete_book', book_id=book.id) }}"
+            style="display:inline"
+          >
+            <button type="submit">Delete Book</button>
+          </form>
+        </li>
+      {% else %}
+        <li>
+          {% if request.args.get('q') %}
+            No books match your search.
+          {% else %}
+            No books yet.
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p>
+      <a href="{{ url_for('add_author') }}">Add author</a> |
+      <a href="{{ url_for('add_book') }}">Add book</a>
+    </p>
+  </body>
+</html>

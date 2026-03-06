@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Add Book</title>
+  </head>
+  <body>
+    <h1>Add Book</h1>
+
+    <form method="post">
+      <label>Title:
+        <input type="text" name="title" required>
+      </label>
+      <br>
+      <label>Author:
+        <select name="author_id" required>
+          {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.full_name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <br>
+      <button type="submit">Save</button>
+    </form>
+
+    <p><a href="{{ url_for('index') }}">Back to home</a></p>
+  </body>
+</html>
