@@ -1,1 +1,26 @@
 <paste the above rules>
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Codio / IDE settings
+.codio/
+.settings/
+.vscode/
+.idea/
+
+# Databases and instance data
+instance/
+*.db
+*.sqlite3
+*.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db
